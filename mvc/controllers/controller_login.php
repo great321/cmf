@@ -34,7 +34,7 @@ class Controller_Login extends Controller
     }
     
     function input(){
-        $this->input['login'] = Input::get_post('login');
+        $this->input['username'] = Input::get_post('username');
         $this->input['password'] = Input::get_post('password');        
     }
 }

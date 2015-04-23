@@ -27,9 +27,26 @@ class Model_Login extends Model
     }
     
     function check(){
-      $login = $this->input['login'];
+      $username = $this->input['username'];
       $password = $this->input['password'];
       
+      if(empty($username))
+      {
+          error('You have not entered username');
+      } elseif(mb_strlen($username) < 2 || mb_strlen($username) > 15)
+      {
+          error('Wrong username lenght. Min. 2, Max. 15');
+      }
+      //TODO pregmatch check.
+      if(empty($password))
+      {
+          error('You have not entered password');
+      } elseif(mb_strlen($password) < 6 || mb_strlen($username) > 10)
+      {
+          error('Wrong password lenght. Min. 6, Max. 10');
+      }
+      
+      //TODO captcha
       
     }
     

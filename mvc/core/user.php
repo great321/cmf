@@ -20,7 +20,7 @@
 class User{
     public static $id = false;
     public static $password = false;
-    public static $login = false;
+    public static $username = false;
     public static $data = array();
     
     static function authorize(){
@@ -46,7 +46,7 @@ class User{
                 
                 if( User::$password == User::$data['password'] )
                 {
-                   User::$login = User::$data['name']; 
+                   User::$username = User::$data['name']; 
                 }
                 else
                 {
@@ -60,7 +60,7 @@ class User{
     static function unauthorize(){
         User::$id = false;
         User::$data = array();
-        User::$login = false;
+        User::$username = false;
         unset($_SESSION['user_id']);
         unset($_SESSION['user_password']);
         setcookie('user_id','');

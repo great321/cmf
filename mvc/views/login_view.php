@@ -4,7 +4,7 @@
 <div><?php echo $row; ?></div>
 <?php endforeach; endif; ?>
 
-<?php if (! User::$login) :?>
+<?php if (! User::$username) :?>
 
 <?php else :?>
 
