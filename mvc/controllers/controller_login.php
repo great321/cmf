@@ -19,11 +19,22 @@
 
 class Controller_Login extends Controller
 {
-    function action_index(){
-        $this->view->generate('login_view.php', 'template_view.php');
+    public $input;
+    
+    function __construct() {
+        $this->model = new Model_Login();
+        $this->view = new View();
     }
     
-    function action_check(){
-        
+    function action_index(){
+        $this->input();
+        $this->model->set_input($input);
+        $data = $this->model->get_data();
+        $this->view->generate('login_view.php', 'template_view.php', $data);
+    }
+    
+    function input(){
+        $this->input['login'] = Input::get_post('login');
+        $this->input['password'] = Input::get_post('password');        
     }
 }

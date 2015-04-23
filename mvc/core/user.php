@@ -23,7 +23,7 @@ class User{
     public static $login = false;
     public static $data = array();
     
-    function authorize(){
+    static function authorize(){
         if ( isset($_SESSION['user_id']) && isset($_SESSION['user_password']))
         {
             User::$id = abs(intval($_SESSION['user_id']));

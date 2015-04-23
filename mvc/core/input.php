@@ -17,28 +17,21 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/* TODO Later..
-define('ROOTPATH', dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR);
-spl_autoload_register('autoload');
-function autoload($name)
-{
-    $file = ROOTPATH . 'mvc/controllers/' . $name . '.php';
-    if (file_exists($file))
-        require_once($file);
+class Input{
+    
+    static function get_post($name){
+        if (isset($_POST[$name]))
+        {
+            return htmlspecialchars($_POST[$name]);
+        } 
+        else return null;
+    }
+    
+    static function get($name){
+        if (isset($_GET[$name]))
+        {
+            return htmlspecialchars($_GET[$name]);
+        } 
+        else return null;
+    }
 }
-*/
-
-require_once 'core/input.php'; //class later TODO
-require_once 'core/model.php';
-require_once 'core/view.php';
-require_once 'core/controller.php';
-
-require_once 'core/db.php';
-DB::connect();
-
-require_once 'core/user.php';
-User::authorize();
-
-require_once 'core/route.php';
-Route::start();
-

@@ -19,7 +19,7 @@
 
 class View
 {
-    function generate($content_view, $template_view){
+    function generate($content_view, $template_view, $data = null){
         require('mvc/views/'.$template_view); 
            // or die('Cannot include '.$template_view. '! #'.$content_view);
     }
