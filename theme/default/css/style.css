@@ -1,0 +1,61 @@
+body {
+    background: #000000;
+    color: #212121;
+ }
+ 
+ 
+a:active {
+    color: #555500;
+}
+
+a:hover {
+    color: #FF0000;
+    text-decoration: underline;
+}
+
+a:link, a:visited {
+    color: #306090;
+    text-decoration: none;
+}
+
+
+.darkprimary{
+    color: #FFFFFF;
+    background-color: #1976D2;
+}
+
+
+.primary{
+    color: #FFFFFF;
+    background-color: #2196F3;
+}
+
+.lightprimary{
+    color: #212121;
+    background-color: #BBDEFB;
+}
+
+.accentcolor{
+    color: #FFFFFF;
+    background-color: #607D8B;
+}
+
+.dividedcolor{
+    color: #FFFFFF;
+    background-color: #B6B6B6;
+}
+
+.primarytext{
+    color: #212121;
+}
+
+.secondarytext{
+    color: #727272;
+}
+
+
+.menu {
+    color: #555555;
+    background-color: #F5F5FF;
+    padding: 5px 10px;
+}

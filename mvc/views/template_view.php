@@ -7,17 +7,17 @@
 <meta name="description" content="">
 <link rel="stylesheet" href="/theme/default/css/style.css">
 </head>
-<body class="primary">
+<body>
     <div class="darkprimary">
         <center>SiteName</center>
     </div>
-    <div class="primary">
-        <span><a href="/">Home</a></span>
-        <span><a href="/Desc">Desc</a></span>
+    <div class="lightprimary">
+        <span><a href="/login">Login</a></span>
         <span></span>
     </div>
     <div class="primary">
-        <span><a href="/Login">Login</a></span>
+        <span><a href="/">Home</a></span>
+        <span><a href="/desc">Desc</a></span>
         <span></span>
     </div>
     <div class="primary">
