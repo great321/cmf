@@ -1,6 +1,6 @@
 <?php
 
-/* 
+/*
  * Copyright (C) 2015 user
  *
  * This program is free software: you can redistribute it and/or modify
@@ -17,11 +17,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-function get_homeurl(){
+function get_homeurl() {
     //todo defined or config
     return $_SERVER['SERVER_NAME'];
 }
 
-function change_location($url){
+function change_location($url) {
     header('Location: ' . $url);
 }

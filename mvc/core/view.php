@@ -1,6 +1,6 @@
 <?php
 
-/* 
+/*
  * Copyright (C) 2015 user
  *
  * This program is free software: you can redistribute it and/or modify
@@ -17,14 +17,15 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-class View
-{
-    function generate($content_view, $template_view, $data = null){
-        require('mvc/views/'.$template_view); 
-           // or die('Cannot include '.$template_view. '! #'.$content_view);
+class View {
+
+    function generate($content_view, $template_view, $data = null) {
+        require('mvc/views/' . $template_view);
+        // or die('Cannot include '.$template_view. '! #'.$content_view);
     }
-    
-    static function include_view(){
-        require 'mvc/views/'.$content_view;
+
+    static function include_view() {
+        require 'mvc/views/' . $content_view;
     }
+
 }

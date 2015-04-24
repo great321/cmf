@@ -1,6 +1,6 @@
 <?php
 
-/* 
+/*
  * Copyright (C) 2015 user
  *
  * This program is free software: you can redistribute it and/or modify
@@ -17,21 +17,20 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-class Input{
-    
-    static function get_post($name){
-        if (isset($_POST[$name]))
-        {
+class Input {
+
+    static function get_post($name) {
+        if (isset($_POST[$name])) {
             return htmlspecialchars($_POST[$name]);
-        } 
-        else return null;
+        } else
+            return null;
     }
-    
-    static function get($name){
-        if (isset($_GET[$name]))
-        {
+
+    static function get($name) {
+        if (isset($_GET[$name])) {
             return htmlspecialchars($_GET[$name]);
-        } 
-        else return null;
+        } else
+            return null;
     }
+
 }

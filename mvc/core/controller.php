@@ -1,6 +1,6 @@
 <?php
 
-/* 
+/*
  * Copyright (C) 2015 user
  *
  * This program is free software: you can redistribute it and/or modify
@@ -17,13 +17,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-class Controller
-{
+class Controller {
+
     public $model;
     public $view;
-    
-    function __construct() 
-    {
+
+    function __construct() {
         $this->view = new View();
     }
+
 }

@@ -1,6 +1,6 @@
 <?php
 
-/* 
+/*
  * Copyright (C) 2015 user
  *
  * This program is free software: you can redistribute it and/or modify
@@ -17,28 +17,28 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-class Controller_Login extends Controller
-{
+class Controller_Login extends Controller {
+
     public $input;
     public $submit;
-    
+
     function __construct() {
         $this->model = new Model_Login();
         $this->view = new View();
     }
-    
-    function action_index(){
+
+    function action_index() {
         $this->input();
         $this->model->set_input($this->input);
         $this->model->set_submit($this->submit);
         $data = $this->model->get_data();
         $this->view->generate('login_view.php', 'template_view.php', $data);
     }
-    
-    function input(){
+
+    function input() {
         $this->input['username'] = Input::get_post('username');
-        $this->input['password'] = Input::get_post('password');        
+        $this->input['password'] = Input::get_post('password');
         $this->submit = isset($_POST['submit']) ? true : false;
-        
     }
+
 }

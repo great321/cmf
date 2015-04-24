@@ -1,6 +1,6 @@
 <?php
 
-/* 
+/*
  * Copyright (C) 2015 user
  *
  * This program is free software: you can redistribute it and/or modify
@@ -18,22 +18,23 @@
  */
 
 class DB {
-    
+
     public $count = 0;
-    
-    static function connect(){
+
+    static function connect() {
         $configpath = 'mvc/config/db.ini';
         $db = parse_ini_file($configpath);
-        
+
         $db['host'] = isset($db['host']) ? $db['host'] : 'localhost';
         $db['name'] = isset($db['name']) ? $db['name'] : '';
         $db['user'] = isset($db['user']) ? $db['user'] : '';
         $db['pass'] = isset($db['pass']) ? $db['pass'] : '';
-        
+
         $connect = mysql_connect($db['host'], $db['user'], $db['pass'])
-            or die('Cannot connect to database');
+                or die('Cannot connect to database');
         mysql_select_db($db['name'])
-            or die('Database does not exist');
+                or die('Database does not exist');
         mysql_query("SET NAMES 'utf8'", $connect);
     }
+
 }

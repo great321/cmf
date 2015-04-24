@@ -1,6 +1,6 @@
 <?php
 
-/* 
+/*
  * Copyright (C) 2015 user
  *
  * This program is free software: you can redistribute it and/or modify
@@ -18,15 +18,15 @@
  */
 
 /* TODO Later..
-define('ROOTPATH', dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR);
-spl_autoload_register('autoload');
-function autoload($name)
-{
-    $file = ROOTPATH . 'mvc/controllers/' . $name . '.php';
-    if (file_exists($file))
-        require_once($file);
-}
-*/
+  define('ROOTPATH', dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR);
+  spl_autoload_register('autoload');
+  function autoload($name)
+  {
+  $file = ROOTPATH . 'mvc/controllers/' . $name . '.php';
+  if (file_exists($file))
+  require_once($file);
+  }
+ */
 require_once 'core/functions.php';
 require_once 'core/input.php'; //class later TODO
 require_once 'core/model.php';
