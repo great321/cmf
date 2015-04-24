@@ -17,7 +17,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-class Model_Login extends Model {
+//TODO *** code to class.
+
+class Model_Registration extends Model {
 
     public $input;
     public $success = false;
@@ -56,11 +58,11 @@ class Model_Login extends Model {
         //TODO captcha
         if (!$this->get_error_count()) {
             $user_data_db = User::get_data_username($username);
-            if ($user_data_db && md5(md5($password)) == $user_data_db['password']) {
+            if (!$user_data_db) {
                 $this->success = true;
-                User::set_auth_data($user_data_db['id'], $password);
+                User::insert_new_user($username, $password);
             } else
-                $this->error('Wrong username or password');
+                $this->error('Username occupied.');
         }
     }
 

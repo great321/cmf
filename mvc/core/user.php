@@ -25,6 +25,7 @@ class User {
     public static $data = array();
 
     static function authorize() {
+
         if (isset($_SESSION['user_id']) && isset($_SESSION['user_password'])) {
             User::$id = abs(intval($_SESSION['user_id']));
             User::$password = $_SESSION['user_password'];
@@ -55,8 +56,12 @@ class User {
         User::$id = false;
         User::$data = array();
         User::$username = false;
-        unset($_SESSION['user_id']);
-        unset($_SESSION['user_password']);
+        if (isset($_SESSION['user_id'])) {
+            unset($_SESSION['user_id']);
+        }
+        if (isset($_SESSION['user_password'])) {
+            unset($_SESSION['user_password']);
+        }
         setcookie('user_id', '');
         setcookie('user_password', '');
     }
@@ -64,7 +69,7 @@ class User {
     static function set_auth_data($user_id, $password) {
         $time = time() + 3600 * 24 * 365;
         setcookie('user_id', base64_encode($user_id), $time);
-        setcookie('user_password', md5(password), $time);
+        setcookie('user_password', md5($password), $time);
 
         $_SESSION['user_id'] = $user_id;
         $_SESSION['user_password'] = md5(md5($password));
@@ -74,12 +79,39 @@ class User {
     //TODO DB filter/
     static function get_data_username($username) {
         $result = false;
-        $username = mysql_real_escape_string(mb_strlow(username));
-        $request = mysql_query("SELECT * FROM `cmf_users` WHERE `name`='" . $username . "' LIMIT 1");
-        if (mysql_num_rows($result)) {
+        $username = mysql_real_escape_string(mb_strtolower($username));
+        $query = "SELECT * FROM `cmf_users` WHERE `name`='" . $username . "' LIMIT 1";
+        $request = mysql_query($query);
+        if (mysql_num_rows($request)) {
             return mysql_fetch_assoc($request);
         }
         return $result;
+    }
+
+    static function insert_new_user($username, $password) {
+        $username = mysql_real_escape_string(mb_strtolower($username));
+        $password = mysql_real_escape_string(md5(md5($password)));
+        $ip = mysql_real_escape_string(User::get_ip());
+        $browser = mysql_real_escape_string(User::get_browser());
+        mysql_query("INSERT INTO `cmf_users` SET
+            `name` = '" . $username . "',
+            `password` = '" . $password . "',
+            `rights` = '0',
+            `regdate` = '" . time() . "',
+            `ip` = '" . $ip . "',
+            `browser` = '" . $browser . "'
+        ") or die(__LINE__ . ': ' . mysql_error()); //TODO 
+    }
+
+    static function get_ip() {
+        return ip2long($_SERVER['REMOTE_ADDR']);
+    }
+
+    static function get_browser() {
+        if (isset($_SERVER['HTTP_USER_AGENT'])) {
+            return '' . htmlspecialchars(mb_substr(trim($_SERVER['HTTP_USER_AGENT']), 0, 200));
+        } else
+            return 'Not recognised';
     }
 
 }

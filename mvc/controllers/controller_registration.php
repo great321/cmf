@@ -17,13 +17,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-class Controller_Login extends Controller {
+class Controller_Registration extends Controller {
 
     public $input;
     public $submit;
 
     function __construct() {
-        $this->model = new Model_Login();
+        $this->model = new Model_Registration();
         $this->view = new View();
     }
 
@@ -32,10 +32,7 @@ class Controller_Login extends Controller {
         $this->model->set_input($this->input);
         $this->model->set_submit($this->submit);
         $data = $this->model->get_data();
-        if ($data['success'])
-            change_location(get_homeurl());
-        else
-            $this->view->generate('login_view.php', 'template_view.php', $data);
+        $this->view->generate('registration_view.php', 'template_view.php', $data);
     }
 
     function input() {

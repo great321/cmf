@@ -17,17 +17,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-function get_homeurl() {
-    //todo defined or config
-    return 'http://' . $_SERVER['SERVER_NAME'];
-}
+//TODO add user (in database) last visited date 
 
-function change_location($url) {
-    header('Location: ' . $url);
-}
+class Controller_Exit extends Controller {
 
-function print_username() {
-    if (User::$username) {
-        echo User::$username;
+    function action_index() {
+        User::unauthorize();
+        change_location(get_homeurl());
     }
+
 }
