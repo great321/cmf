@@ -27,9 +27,10 @@ class Model_Login extends Model
     function get_data(){
         $this->check();
         return array(
-            'user' => $this->$input['username'],
-            'password' => $this->$input['password'],
-            'success' => $this->$success
+            'user' => $this->input['username'],
+            'password' => $this->input['password'],
+            'success' => $this->success,
+            'errors' => $this->errors
         );
     }
     
@@ -38,15 +39,15 @@ class Model_Login extends Model
         $password = $this->input['password'];
 
         if (empty($username)) {
-            error('You have not entered username');
+            $this->error('You have not entered username');
         } elseif (mb_strlen($username) < 2 || mb_strlen($username) > 15) {
-            error('Wrong username lenght. Min. 2, Max. 15');
+            $this->error('Wrong username lenght. Min. 2, Max. 15');
         }
         //TODO pregmatch check.
         if (empty($password)) {
-            error('You have not entered password');
+            $this->error('You have not entered password');
         } elseif (mb_strlen($password) < 6 || mb_strlen($username) > 10) {
-            error('Wrong password lenght. Min. 6, Max. 10');
+            $this->error('Wrong password lenght. Min. 6, Max. 10');
         }
 
         //TODO captcha
@@ -60,11 +61,11 @@ class Model_Login extends Model
     }
 
     function error($error){
-        $this>$errors[] = $error;
+        $this->errors[] = $error;
     }
     
     function get_error_count(){
-        return count($this->$errors);
+        return count($this->errors);
     }
     
     
