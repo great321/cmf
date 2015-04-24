@@ -66,4 +66,26 @@ class User{
         setcookie('user_id','');
         setcookie('user_password','');
     }
+    
+    
+    static function set_auth_data($user_id, $password){
+        $time = time() + 3600 * 24 * 365;
+        setcookie('user_id', base64_encode($user_id), $time);
+        setcookie('user_password', md5(password), $time);
+        
+        $_SESSION['user_id'] = $user_id;
+        $_SESSION['user_password'] = md5(md5($password));
+    }
+    
+    //TODO rename. 
+    //TODO DB filter/
+    static function get_data_username($username){
+        $result = false;
+        $username = mysql_real_escape_string(mb_strlow(username));
+        $request = mysql_query("SELECT * FROM `cmf_users` WHERE `name`='" . $username . "' LIMIT 1");
+        if (mysql_num_rows($result)){
+            return mysql_fetch_assoc($request);
+        }
+        return $result;
+    }
 }

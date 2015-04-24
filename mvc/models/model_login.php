@@ -21,38 +21,52 @@ class Model_Login extends Model
 {   
     
     public $input;
+    public $success = false; 
+    public $errors = array();
     
     function get_data(){
-        return array();
+        $this->check();
+        return array(
+            'user' => $this->$input['username'],
+            'password' => $this->$input['password'],
+            'success' => $this->$success
+        );
     }
     
-    function check(){
-      $username = $this->input['username'];
-      $password = $this->input['password'];
-      
-      if(empty($username))
-      {
-          error('You have not entered username');
-      } elseif(mb_strlen($username) < 2 || mb_strlen($username) > 15)
-      {
-          error('Wrong username lenght. Min. 2, Max. 15');
-      }
-      //TODO pregmatch check.
-      if(empty($password))
-      {
-          error('You have not entered password');
-      } elseif(mb_strlen($password) < 6 || mb_strlen($username) > 10)
-      {
-          error('Wrong password lenght. Min. 6, Max. 10');
-      }
-      
-      //TODO captcha
-      
+    function check() {
+        $username = $this->input['username'];
+        $password = $this->input['password'];
+
+        if (empty($username)) {
+            error('You have not entered username');
+        } elseif (mb_strlen($username) < 2 || mb_strlen($username) > 15) {
+            error('Wrong username lenght. Min. 2, Max. 15');
+        }
+        //TODO pregmatch check.
+        if (empty($password)) {
+            error('You have not entered password');
+        } elseif (mb_strlen($password) < 6 || mb_strlen($username) > 10) {
+            error('Wrong password lenght. Min. 6, Max. 10');
+        }
+
+        //TODO captcha
+        if (!$this->get_error_count()) {
+            $user_data_db = User::get_data_username($username);
+            if ($user_data_db) {
+                $this->$success = true;
+                User::set_auth_data($user_data_db['id'], $password);
+            }
+        }
     }
-    
+
     function error($error){
-        $data['error'][] = $error;
+        $this>$errors[] = $error;
     }
+    
+    function get_error_count(){
+        return count($this->$errors);
+    }
+    
     
     function set_input($input){
         $this->input = $input;
