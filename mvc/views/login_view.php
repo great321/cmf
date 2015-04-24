@@ -5,12 +5,12 @@ Form
 <?php if ($data['errors']): foreach ($data['errors'] as $row): ?>
 <div><?php echo $row; ?></div>
 <?php endforeach; endif; ?>
-<form action="login.php" method="post">
+<form action="login" method="post">
 <br/>Username:<br/>
 <p><input type="text" name="username" value="<?php $data['username'] ?>" maxlength="20"/></p>
 <br/>Password:<br/>
 <input type="password" name="password" value="<?php $data['password'] ?>" maxlength="20"/>
-<p><input type="submit" value="Login"/></p>
+<p><input type="submit" name="submit" value="Login"/></p>
 </form>
 
 

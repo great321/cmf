@@ -20,6 +20,7 @@
 class Controller_Login extends Controller
 {
     public $input;
+    public $submit;
     
     function __construct() {
         $this->model = new Model_Login();
@@ -29,6 +30,7 @@ class Controller_Login extends Controller
     function action_index(){
         $this->input();
         $this->model->set_input($this->input);
+        $this->model->set_submit($this->submit);
         $data = $this->model->get_data();
         $this->view->generate('login_view.php', 'template_view.php', $data);
     }
@@ -36,5 +38,7 @@ class Controller_Login extends Controller
     function input(){
         $this->input['username'] = Input::get_post('username');
         $this->input['password'] = Input::get_post('password');        
+        $this->submit = isset($_POST['submit']) ? true : false;
+        
     }
 }
