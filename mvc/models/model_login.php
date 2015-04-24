@@ -1,6 +1,6 @@
 <?php
 
-/* 
+/*
  * Copyright (C) 2015 user
  *
  * This program is free software: you can redistribute it and/or modify
@@ -17,23 +17,26 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-class Model_Login extends Model
-{   
-    
+class Model_Login extends Model {
+
     public $input;
-    public $success = false; 
+    public $success = false;
     public $errors = array();
-    
-    function get_data(){
-        $this->check();
+    public $submit = false;
+
+    function get_data() {
+        if ($this->submit) {
+            $this->check();
+        }
+
         return array(
-            'user' => $this->input['username'],
+            'username' => $this->input['username'],
             'password' => $this->input['password'],
             'success' => $this->success,
             'errors' => $this->errors
         );
     }
-    
+
     function check() {
         $username = $this->input['username'];
         $password = $this->input['password'];
@@ -60,16 +63,20 @@ class Model_Login extends Model
         }
     }
 
-    function error($error){
+    function error($error) {
         $this->errors[] = $error;
     }
-    
-    function get_error_count(){
+
+    function get_error_count() {
         return count($this->errors);
     }
-    
-    
-    function set_input($input){
+
+    function set_input($input) {
         $this->input = $input;
     }
+
+    function set_submit($submit) {
+        $this->submit = $submit;
+    }
+
 }
