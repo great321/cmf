@@ -19,8 +19,8 @@
 
 class Controller_Registration extends Controller {
 
-    public $input;
-    public $submit;
+    private $input;
+    private $submit;
 
     function __construct() {
         $this->model = new Model_Registration();

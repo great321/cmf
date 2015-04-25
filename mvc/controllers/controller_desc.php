@@ -19,8 +19,8 @@
 
 class Controller_Desc extends Controller {
 
-    public $input;
-    public $submit;
+    private $input;
+    private $submit;
 
     function __construct() {
         $this->model = new Model_Desc();

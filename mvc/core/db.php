@@ -29,8 +29,8 @@ class DB {
         $db['name'] = isset($db['name']) ? $db['name'] : '';
         $db['user'] = isset($db['user']) ? $db['user'] : '';
         $db['pass'] = isset($db['pass']) ? $db['pass'] : '';
-
-        $connect = mysql_connect($db['host'], $db['user'], $db['pass'])
+        
+        $connect = @mysql_connect($db['host'], $db['user'], $db['pass'])
                 or die('Cannot connect to database');
         mysql_select_db($db['name'])
                 or die('Database does not exist');
