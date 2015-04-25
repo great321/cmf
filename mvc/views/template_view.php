@@ -8,9 +8,17 @@
 <link rel="stylesheet" href="/theme/default/css/style.css">
 </head>
 <body>
-<div class="darkprimary">
-<center>SiteName</center>
+<div id="master-header">
+<hgroup>
+<h1>SiteName</h1>
+<h2 id="site-description">This is an awesome description of the site!</h2>
+</hgroup>
+
 </div>
+<header id="master-header" class="clearfix" role="banner">
+
+
+	</header> 
 <div class="lightprimary">
 <?php if (User::$username) : ?>
 Hello <?php print_username(); ?>! <span><a href = "/exit">[exit]</a></span>
@@ -26,5 +34,10 @@ Hello <?php print_username(); ?>! <span><a href = "/exit">[exit]</a></span>
 <div class="primary">
 <?php include 'mvc/views/' . $content_view; ?>
 </div>
+    
+<footer id="footer" >
+<p>
+Copyright &copy; 20xx <a href="/">Sitename</a></p>
+</footer>
 </body>
 </html>
