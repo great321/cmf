@@ -23,7 +23,8 @@ class User {
     public static $password = false;
     public static $username = false;
     public static $data = array();
-
+    private static $usernames_cache = array();
+    
     static function authorize() {
 
         if (isset($_SESSION['user_id']) && isset($_SESSION['user_password'])) {
@@ -102,7 +103,23 @@ class User {
             `browser` = '" . $browser . "'
         ") or die(__LINE__ . ': ' . mysql_error()); //TODO 
     }
-
+    
+    static function get_name_of_id($id){
+        if ( isset(User::$usernames_cache[$id])){
+            return User::$usernames_cache[$id];
+        }
+        
+        $id = mysql_real_escape_string($id);
+        $query = "SELECT `name` FROM `cmf_users` WHERE `id`='" . $id . "' LIMIT 1";
+        $request = mysql_query($query);
+        if (mysql_num_rows($request)) {
+            $result = mysql_fetch_assoc($request);
+            User::$usernames_cache[$id] = $result['name'];
+            return User::get_name_of_id($id);
+        }
+        return null;
+    }
+    
     static function get_ip() {
         return ip2long($_SERVER['REMOTE_ADDR']);
     }
@@ -113,5 +130,6 @@ class User {
         } else
             return 'Not recognised';
     }
+
 
 }

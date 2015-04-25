@@ -2,7 +2,7 @@
 
 <?php if ($data['success'] == false && User::$username == false) : ?>
     Form
-    <?php if ($data['errors']): foreach ($data['errors'] as $row): ?>
+    <?php if (count($data['errors'])): foreach ($data['errors'] as $row): ?>
             <div><?php echo $row; ?></div>
         <?php endforeach;
     endif; ?>

@@ -31,3 +31,9 @@ function print_username() {
         echo User::$username;
     }
 }
+
+function display_unixtime($time){
+    //TODO m.d.Y or Y.m.d
+    //TODO time shift
+    return date("H:i d.m.Y", $time);
+}
