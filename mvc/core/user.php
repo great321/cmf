@@ -20,9 +20,9 @@
 class User {
 
     public static $id = false;
-    public static $password = false;
     public static $username = false;
-    public static $data = array();
+    private static $password = false;
+    private static $data = array();
     private static $usernames_cache = array();
     
     static function authorize() {
