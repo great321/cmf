@@ -104,7 +104,7 @@ class Model_Desc extends Model {
     function insert_message($message) {
         //TODO use Mysql UNIXTIME (not var).
         $time = time();
-        $user_id = mysql_escape_string(User::$id);
+        $user_id = mysql_real_escape_string(User::$id);
         $message = mysql_real_escape_string($message);
         $ip = mysql_real_escape_string(User::get_ip());
         
